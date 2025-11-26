@@ -4,7 +4,8 @@ import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
 import routes from "routes";
-import { useColorMode } from "@chakra-ui/system";
+import { useColorMode } from "@chakra-ui/react";
+
 // import Editform from "components/form";
 
 export default function Admin(props: { [x: string]: any }) {
@@ -67,7 +68,11 @@ export default function Admin(props: { [x: string]: any }) {
   document.documentElement.dir = "ltr";
   return (
     <div className="flex h-full w-full">
-      <Sidebar open={open} onClose={() => setOpen(false)} colorMode={colorMode}/>
+      <Sidebar
+        open={open}
+        onClose={() => setOpen(false)}
+        colorMode={colorMode}
+      />
       {/* Navbar & Main Content */}
       <div className="h-full w-full bg-lightPrimary dark:bg-navy-900">
         {/* Main Content */}
