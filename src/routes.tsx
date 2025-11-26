@@ -2,6 +2,7 @@ import { PiUserList } from "react-icons/pi";
 import UserList from "views/admin/userList";
 import { IoMdSettings } from "react-icons/io";
 import Login from "views/auth/logIn";
+import CreateSession from "views/session/create-session";
 const routes = [
   {
     name: "User List",
@@ -9,6 +10,14 @@ const routes = [
     path: "user-list",
     icon: <PiUserList className="h-6 w-6" />,
     component: <UserList />,
+    sidebar: true,
+  },
+  {
+    name: "Create Lesson",
+    layout: "/admin",
+    path: "create-lesson",
+    icon: <PiUserList className="h-6 w-6" />,
+    component: <CreateSession />,
     sidebar: true,
   },
   {
