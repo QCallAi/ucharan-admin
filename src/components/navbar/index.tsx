@@ -4,7 +4,7 @@ import Dropdown from "components/dropdown";
 import { FiAlignJustify } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
-import precallLogo from "../../assets/img/precallAi.png";
+import logoImg from "../../assets/img/precallai-log-white.svg";
 const Navbar = (props: {
   onOpenSidenav: () => void;
   brandText: string;
@@ -92,7 +92,7 @@ const Navbar = (props: {
           button={
             <img
               className="h-10 w-10 rounded-full"
-              src={precallLogo}
+              src={logoImg}
               alt="Elon Musk"
             />
           }
@@ -108,7 +108,10 @@ const Navbar = (props: {
               {/* <div className="mt-3 h-px w-full bg-gray-200 dark:bg-white/20 " /> */}
 
               <div className="ml-4 mt-3 flex flex-col">
-                <div className="mt-3 hover:text-red-500 cursor-pointer" onClick={handleLogOut}>
+                <div
+                  className="mt-3 cursor-pointer hover:text-red-500"
+                  onClick={handleLogOut}
+                >
                   Log Out
                 </div>
               </div>

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { errorHandler } from "utils/errorHandler";
+// import axios from "axios";
+// import { errorHandler } from "utils/errorHandler";
 
 // API call to authenticate and login
 export const LoginApi = async (credentials: any) => {

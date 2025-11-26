@@ -7,7 +7,7 @@ import { useToast } from "@chakra-ui/react";
 
 import { Checkbox } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { LoginApi } from "services/auth";
+// import { LoginApi } from "services/auth";
 //"services/auth";
 
 const Login = () => {
