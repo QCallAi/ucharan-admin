@@ -1,30 +1,19 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import { Field, ErrorMessage } from "formik";
 
-interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaFieldProps {
   name: string;
   label?: string;
   placeholder?: string;
-  type?:
-    | "text"
-    | "number"
-    | "email"
-    | "password"
-    | "tel"
-    | "date"
-    | "datetime-local"
-    | "time"
-    | "url"
-    | "search";
+  rows?: number;
 }
 
-const InputField = ({
+const TextAreaField = ({
   name,
   label,
   placeholder,
-  type = "text",
-  ...rest
-}: InputFieldProps) => {
+  rows = 4,
+}: TextAreaFieldProps) => {
   return (
     <div className="mb-3 flex flex-col">
       {label && (
@@ -37,19 +26,19 @@ const InputField = ({
       )}
 
       <Field
+        as="textarea"
         id={name}
         name={name}
-        type={type}
         placeholder={placeholder}
-        {...rest} // allows maxLength, min, step, pattern, etc.
+        rows={rows}
         className="
-          rounded 
-          border 
-          bg-white 
-          p-2 
-          text-navy-700 
-          outline-none 
-          focus:border-[#36c8ff] 
+          rounded
+          border
+          bg-white
+          p-2
+          text-navy-700
+          outline-none
+          focus:border-[#36c8ff]
           focus:ring-2
           focus:ring-[#36c8ff]
           dark:bg-navy-800
@@ -66,4 +55,4 @@ const InputField = ({
   );
 };
 
-export default InputField;
+export default TextAreaField;

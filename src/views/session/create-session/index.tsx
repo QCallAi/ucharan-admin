@@ -1,4 +1,4 @@
-import React from "react";
+import Axios from "utils/axious";
 import { Formik, Field, Form, FieldArray } from "formik";
 import InputField from "./InputField";
 
@@ -16,14 +16,24 @@ const initialValues = {
     },
   ],
 };
-
+function createSessionAPI(payload: any) {
+  try {
+    const response = Axios.post("/sessions", payload);
+    console.log("Session created:", response);
+  } catch (error) {}
+}
 const CreateSession = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => console.log("Payload:", values)}
+      onSubmit={(values) => {
+        if (values) {
+          createSessionAPI(values);
+        } else {
+        }
+      }}
     >
-      {({ values }) => (
+      {({ values, errors }) => (
         <Form className="space-y-6 p-6 text-navy-700 dark:text-white">
           <h1 className="text-2xl font-semibold">Create Session</h1>
 
@@ -50,7 +60,6 @@ const CreateSession = () => {
                   >
                     <div className="mb-2 flex items-center justify-between">
                       <h3 className="font-bold">Sub Lesson {index + 1}</h3>
-
                       {index > 0 && (
                         <button
                           type="button"
@@ -61,36 +70,30 @@ const CreateSession = () => {
                         </button>
                       )}
                     </div>
-
                     {/* SUB LESSON FIELDS */}
                     <InputField
                       name={`sublessons[${index}].title`}
                       placeholder="Sub Lesson Title"
                     />
-
                     <Field
                       as="textarea"
                       name={`sublessons[${index}].content`}
                       placeholder="Sub Lesson Content"
                       className="w-full rounded border p-2 outline-none focus:border-[#36c8ff] focus:ring-1 focus:ring-[#36c8ff]"
                     />
-
                     <InputField
                       name={`sublessons[${index}].estimated_time_in_minutes`}
                       type="number"
                       placeholder="Estimated Time in Minutes"
                     />
-
                     <InputField
                       name={`sublessons[${index}].level`}
                       placeholder="Level (Beginner / Intermediate)"
                     />
-
                     <InputField
                       name={`sublessons[${index}].format`}
                       placeholder="Format (Voice-based / Text)"
                     />
-
                     {/* PHRASES SECTION */}
                     <FieldArray name={`sublessons[${index}].phrases`}>
                       {({ push: pushPhrase, remove: removePhrase }) => (
