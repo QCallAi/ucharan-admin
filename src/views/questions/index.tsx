@@ -10,7 +10,6 @@ export default function QuestionForm() {
         <h2 className="mb-6 text-3xl font-semibold text-navy-800">
           Add Questions
         </h2>
-
         <Formik
           initialValues={{
             question: "",
@@ -19,11 +18,9 @@ export default function QuestionForm() {
           }}
           validate={(values) => {
             const errors: any = {};
-
             if (!values.question.trim()) {
               errors.question = "Question is required";
             }
-
             if (!values.points) {
               errors.points = "Points are required";
             } else if (Number(values.points) < 1) {
@@ -31,13 +28,11 @@ export default function QuestionForm() {
             } else if (Number(values.points) > 100) {
               errors.points = "Maximum allowed is 100 points";
             }
-
             if (!values.difficulty) {
               errors.difficulty = "Difficulty is required";
             } else if (![1, 2, 3].includes(Number(values.difficulty))) {
               errors.difficulty = "Invalid difficulty";
             }
-
             return errors;
           }}
           onSubmit={async (values, { resetForm }) => {
@@ -46,19 +41,15 @@ export default function QuestionForm() {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(values),
             });
-
             alert("Saved!");
             resetForm();
           }}
         >
           {() => (
             <Form className="space-y-6">
-              {/* Question Field */}
               <div className="flex flex-col">
                 <TextAreaField name="question" placeholder="Enter question" />
               </div>
-
-              {/* Points Field */}
               <div className="flex flex-col">
                 <InputField
                   name="points"
@@ -88,7 +79,6 @@ export default function QuestionForm() {
                 component="div"
                 className="mt-1 text-xs text-red-500"
               />
-
               {/* Save Button */}
               <div>
                 <button
