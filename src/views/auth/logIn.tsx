@@ -3,10 +3,9 @@ import InputField from "components/fields/InputField";
 import { useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useToast } from "@chakra-ui/react";
-
-import { Checkbox } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { loginAdmin } from "../../services/auth/authService";
+import { Checkbox, useToast } from "@chakra-ui/react";
 // import { LoginApi } from "services/auth";
 //"services/auth";
 
@@ -27,55 +26,53 @@ const Login = () => {
     login_password: Yup.string().required("Password field can not be empety"),
   });
 
-  const handleSignIn = (values: any) => {
-    // let signInPayload = {
-    //   email: values.login_email,
-    //   password: values.login_password,
-    // };
-    // LoginApi(signInPayload)
-    //   .then((response) => {
-    //     // if (response.success) {
-    //     localStorage?.setItem(
-    //       "token",
-    //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZDYxYjE0Ny1jMDM2LTRkNzMtYWM2OS1kZjAyNmI0OGRmMGYiLCJtb2JpbGVOdW1iZXIiOiI5ODc2IiwiaWF0IjoxNzY0MDUwNzU4LCJleHAiOjE3NjQwNTE2NTh9.vZ29Oxq_JFlSwmjnA8ny8YAozcSzrQpjd9cIxaHpcYo"
-    //     );
-    //     // toast({
-    //     //   description: response?.message,
-    //     //   status: "success",
-    //     //   duration: 8000,
-    //     //   isClosable: true,
-    //     //   position: "top-left",
-    //     // });
-    //     // navigate("/admin/user-list");
-    //     // } else {
-    //     //   toast({
-    //     //     description: response?.message,
-    //     //     status: "info",
-    //     //     duration: 8000,
-    //     //     isClosable: true,
-    //     //     position: "top-left",
-    //     //   });
-    //     // }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error submitting feedback:", error);
-    //   });
-    console.log("Handling Sign In");
-    localStorage.setItem(
-      "token",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZDYxYjE0Ny1jMDM2LTRkNzMtYWM2OS1kZjAyNmI0OGRmMGYiLCJtb2JpbGVOdW1iZXIiOiI5ODc2IiwiaWF0IjoxNzY0MDUwNzU4LCJleHAiOjE3NjQwNTE2NTh9.vZ29Oxq_JFlSwmjnA8ny8YAozcSzrQpjd9cIxaHpcYo"
-    );
+  const handleSignIn = async (values: any) => {
+    try {
+      const payload = {
+        email: values.login_email,
+        password: values.login_password,
+      };
 
-    toast({
-      description: "Logged in (static token)",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-      position: "top-left",
-    });
+      const response = await loginAdmin(payload);
+      const token = response?.data?.accessToken;
 
-    navigate("/admin/user-list");
+      if (token) {
+        localStorage.setItem("token", token);
+
+        toast({
+          description: "Logged in successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-left",
+        });
+
+        navigate("/admin/user-list");
+      } else {
+        toast({
+          description: "Token missing in response",
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "top-left",
+        });
+      }
+    } catch (error: any) {
+      const message =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Login failed. Please check your credentials.";
+
+      toast({
+        description: message,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "top-left",
+      });
+    }
   };
+
   const token = localStorage.getItem("token");
 
   useEffect(() => {
