@@ -6,7 +6,7 @@ import {
 import UserList from "views/admin/userList";
 import { IoMdSettings } from "react-icons/io";
 import Login from "views/auth/logIn";
-import QuestionForm from "views/questions";
+import QuestionsPage from "views/admin/questions";
 import CreateSession from "views/session/create-session";
 const routes = [
   {
@@ -26,11 +26,11 @@ const routes = [
     sidebar: true,
   },
   {
-    name: "Add Questions",
+    name: "Questions",
     layout: "/admin",
-    path: "add-questions",
+    path: "questions",
     icon: <PiSealQuestionDuotone className="h-6 w-6" />,
-    component: <QuestionForm />,
+    component: <QuestionsPage />,
     sidebar: true,
   },
 
