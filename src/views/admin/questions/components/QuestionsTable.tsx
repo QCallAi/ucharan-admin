@@ -178,21 +178,18 @@ const QuestionsTable = () => {
     }
 
     return (
-      <div className="mt-4 overflow-x-scroll xl:overflow-x-hidden">
-        <table className="w-full">
-          <thead>
-            {table.getHeaderGroups()?.map((headerGroup) => (
-              <tr
-                key={headerGroup.id}
-                className="border-b border-gray-200 dark:border-gray-700"
-              >
-                {headerGroup.headers?.map((header) => {
-                  return (
+      <div className="mt-4">
+        <div className="max-h-[500px] overflow-auto rounded-lg border border-gray-200">
+          <table className="w-full table-fixed">
+            <thead className="sticky top-0 z-10 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
                       onClick={header.column.getToggleSortingHandler()}
-                      className="cursor-pointer pb-3 pt-2 text-start transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                      className="z-10 cursor-pointer bg-gray-50 px-6 py-4 text-left text-xs font-bold uppercase tracking-wide text-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
                     >
                       <div className="flex items-center gap-2">
                         {flexRender(
@@ -206,33 +203,30 @@ const QuestionsTable = () => {
                         )}
                       </div>
                     </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table?.getRowModel().rows?.map((row) => {
-              return (
+                  ))}
+                </tr>
+              ))}
+            </thead>
+
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {table.getRowModel().rows.map((row) => (
                 <tr
                   key={row.id}
-                  className="border-b border-gray-100 transition-colors hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800/50"
+                  className="transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/50"
                 >
-                  {row?.getVisibleCells()?.map((cell) => {
-                    return (
-                      <td key={cell.id} className="min-w-[150px] py-4 pr-4">
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    );
-                  })}
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className="min-w-[150px] px-6 py-4">
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   };

@@ -1,21 +1,23 @@
 import { Navigate, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import PublicRoute from "components/PublicRoute";
+import ProtectedRoute from "components/ProtectedRoute";
+import Login from "views/auth/logIn";
 
 const AdminLayout = lazy(() => import('layouts/admin'));
-const AuthLayout = lazy(() => import('layouts/auth'));
 
 const router = createBrowserRouter([
   {
-    path: "auth/*",
-    element: <AuthLayout />,
+    path: "auth/login",
+    element: <PublicRoute><Login /></PublicRoute>,
   },
   {
     path: "admin/*",
-    element: <AdminLayout />,
+    element: <ProtectedRoute><AdminLayout /></ProtectedRoute>,
   },
   {
     path: "/",
-    element: <Navigate to="/auth" replace />,
+    element: <Navigate to="/admin/user-list" replace />,
   },
 ]);
 
