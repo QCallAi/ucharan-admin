@@ -2,6 +2,7 @@
   "name": "ucharan-admin",
   "version": "1.0.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@chakra-ui/hooks": "^2.1.4",
     "@chakra-ui/modal": "^2.2.9",

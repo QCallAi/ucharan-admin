@@ -3,13 +3,13 @@ import { Field } from "formik";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 
 function InputField(props: {
-  id: string;
+  id?: string;
   label?: string;
-  extra: string;
-  placeholder: string;
-  variant: string;
+  extra?: string;
+  placeholder?: string;
+  variant?: string;
   name?: string;
-  type: any;
+  type?: any;
   disabled?: any;
   state?: any;
 }) {

@@ -4,17 +4,17 @@ import {
   PiSealQuestionDuotone,
 } from "react-icons/pi";
 import UserList from "views/admin/userList";
-import { IoMdSettings } from "react-icons/io";
-import Login from "views/auth/logIn";
-import QuestionForm from "views/questions";
+import QuestionsPage from "views/admin/questions";
 import CreateSession from "views/session/create-session";
+import ProtectedRoute from "components/ProtectedRoute";
+
 const routes = [
   {
     name: "User List",
     layout: "/admin",
     path: "user-list",
     icon: <PiUserList className="h-6 w-6" />,
-    component: <UserList />,
+    component: <ProtectedRoute><UserList /></ProtectedRoute>,
     sidebar: true,
   },
   {
@@ -22,25 +22,16 @@ const routes = [
     layout: "/admin",
     path: "create-lesson",
     icon: <PiPencilSimpleBold className="h-6 w-6" />,
-    component: <CreateSession />,
+    component: <ProtectedRoute><CreateSession /></ProtectedRoute>,
     sidebar: true,
   },
   {
-    name: "Add Questions",
+    name: "Questions",
     layout: "/admin",
-    path: "add-questions",
+    path: "questions",
     icon: <PiSealQuestionDuotone className="h-6 w-6" />,
-    component: <QuestionForm />,
+    component: <ProtectedRoute><QuestionsPage /></ProtectedRoute>,
     sidebar: true,
-  },
-
-  {
-    name: "Login",
-    layout: "/auth",
-    path: "login",
-    icon: <IoMdSettings className="h-6 w-6" />,
-    sidebar: false,
-    component: <Login />,
   },
 ];
 export default routes;

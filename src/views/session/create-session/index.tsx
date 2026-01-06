@@ -53,7 +53,7 @@ const CreateSession = () => {
               <div>
                 <h2 className="mb-3 text-xl font-semibold">Sub Lessons</h2>
 
-                {values.sublessons.map((sub, index) => (
+                {values.sublessons?.map((sub, index) => (
                   <div
                     key={index}
                     className="mb-4 rounded border bg-gray-50 p-4 dark:bg-navy-700"
@@ -100,7 +100,7 @@ const CreateSession = () => {
                         <div className="mt-4 border-t pt-4">
                           <h4 className="mb-2 font-semibold">Phrases</h4>
 
-                          {values.sublessons[index].phrases.map((_, pIndex) => (
+                          {values?.sublessons[index]?.phrases?.map((_, pIndex) => (
                             <div
                               key={pIndex}
                               className="mb-3 rounded bg-white p-3 shadow-sm"

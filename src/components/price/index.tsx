@@ -49,7 +49,7 @@ const Price = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {data?.map((item, index) => (
               <tr
                 key={index}
                 className={`border-b ${

@@ -55,7 +55,7 @@ const Pagination = ({ perPage, allTotal, currentPage, paginate }: any) => {
             </button>
           </li>
         )}
-        {pageNumbers.map((number) => (
+        {pageNumbers?.map((number) => (
           <li key={number} className="mx-1">
             <button
               className={`rounded-md px-3 py-1 ${
