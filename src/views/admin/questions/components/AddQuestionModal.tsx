@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Form, FieldArray, Field } from "formik";
 import InputField from "components/fields/InputField";
-import { AddQuestionModalProps, Question } from "../data/types";
+import { AddQuestionModalProps } from "../data/types";
 
 const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   isOpen,

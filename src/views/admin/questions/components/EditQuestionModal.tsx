@@ -9,11 +9,10 @@ import {
   ModalCloseButton,
   Button,
   Checkbox,
-  Textarea,
 } from "@chakra-ui/react";
 import { Formik, Form, FieldArray, Field } from "formik";
 import InputField from "components/fields/InputField";
-import { EditQuestionModalProps, Question } from "../data/types";
+import { EditQuestionModalProps } from "../data/types";
 
 const EditQuestionModal: React.FC<EditQuestionModalProps> = ({
   isOpen,

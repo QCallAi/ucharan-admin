@@ -4,8 +4,6 @@ import {
   PiSealQuestionDuotone,
 } from "react-icons/pi";
 import UserList from "views/admin/userList";
-import { IoMdSettings } from "react-icons/io";
-import Login from "views/auth/logIn";
 import QuestionsPage from "views/admin/questions";
 import CreateSession from "views/session/create-session";
 import ProtectedRoute from "components/ProtectedRoute";
